@@ -1,0 +1,47 @@
+Cazan Bogdan-Marian, Grupa 323CB
+
+                            TEMA 3 IOCLA  
+                    AST - Abstract syntax tree
+
+        Pentru a putea implementa aceasta tema, am avut nevoie sa implementez o
+serie de functii ajutatoare, pe care le voi prezenta pe scurt, in continuare:
+
+-> iocla_atoi; functie care trebuia sa fie implementata oricum. Functia primeste
+ca si parametru un string, care trebuie sa fie convertit intr-un numar intreg.
+Daca numarul este negativ (adica are primul caracter '-'), atunci vom calcula
+modulul acestuia, pentru ca mai apoi sa il inmultim cu -1. Daca insa numarul
+este pozitiv, atunci doar calculam modulul numarului, urmand apoi, implicit, si
+rezultatul dorit
+
+-> check_if_operand; functie care verifica daca valoarea unui nod (care oricum
+este de tip string) este fie un operand (+,-,/,*), fie un numar intreg. Se cauta
+prima oara daca elementul de pe pozitia 1 (indexarea incepand de la 0) este NULL
+sau un numar diferit de NULL. In cazul in care este diferit de NULL, este clar
+ca elementul nostru nu este operand. Daca totusi avem NULL, vom verifica daca
+codul ASCII este mai mare sau egal decat codul ASCII al primei cifre (48),
+intrucat operanzii au codul ASCII mai mic decat cel al cifrelor.
+
+-> create_new_node; functie care creeaza un nou nod, alocand memorie necesara
+pentru fiecare camp, dar si inserand valoarea din campul "data". Folosim apeluri
+utile ale diferitor functii din C, cum ar fi strtok, pentru a putea obtine STATIC
+valoarea nodului respectiv, calloc, pentru alocarea nodului respectiv, si, nu in
+ultimul rand, strdup, functie care aloca memorie dinamic (pe heap) si copiaza
+valoarea stringului nostru. Functia de strdup se putea inlocui si cu apeluri
+ale functiilor malloc/calloc si memcpy, ceea ce nu prea avea sens, pentru ca se
+scria mai mult, pentru acelasi rezultat :)
+
+-> recursive_tree; cea mai importanta functie din cadrul temei. Este functia
+care creeaza arborele, pornind de la radacina. Modul in care aceasta functie se
+executa este foarte asemanatoare cu cel al unei functii in C, folosind apel
+recursiv. In acest arbore, un nod frunza poate fi doar un nod care este numar
+intreg. Operanzii au automat copii. Deci, in cazul in care ajungem la o frunza
+de pe partea stanga, ne vom intoarce la parinte, si verificam si nodul din partea
+dreapta. Daca este un operand, continuam construirea arborelui, altfel, va
+trebui sa mergem inapoi la parinte, si apoi sa mergem la parintele lui. Acest
+lucru se realizeaza recursiv, pana cand ajungem la ultimul nod.
+
+-> create_tree; functia pe care o aveam cu TODO la inceputul temei. Am pastrat-o
+simpla, creand prima oara un nod ce reprezinta nodul radacina, pe care il dam
+ulterior si ca parametru al functiei recursive_tree, pentru a crea arborele
+dorit. La final, vom muta radacina in registrul eax, intrucat in acesta trebuia
+intors rezultatul.
